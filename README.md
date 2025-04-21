@@ -10,7 +10,7 @@ BerkeleyScheduler is a comprehensive academic planning tool designed for UC Berk
 ## Features and Tools
 ### Features
 
-- Class Scheduler
+#### 1. Class Scheduler
 
   - Add Berkeley classes (auto-complete search)
 
@@ -22,39 +22,39 @@ BerkeleyScheduler is a comprehensive academic planning tool designed for UC Berk
 
   - Share via link or QR code
 
-- User Authentication
+#### 2. User Authentication
 
   - Sign up / Login (OAuth or Berkeley CalNet optional)
 
   - Store user preferences and saved data securely
 
-- Professor/Class Ratings
+#### 3. Professor/Class Ratings
 
   - Pull in ratings from RateMyProfessor or internal reviews
 
-- View real-time grade distributions (via BerkeleyTime)
+  - View real-time grade distributions (via BerkeleyTime)
 
-- Allow in-app user reviews/comments
+  - Allow in-app user reviews/comments
 
-- GPA Calculator
+#### 4. GPA Calculator
 
   - Input course grades + credits
 
   - Output cumulative GPA and total credits earned
 
-- Group Chat for Each Class
+#### 5. Group Chat for Each Class
 
   - Join/leave class-specific chatrooms
 
   - Send messages, links, media (if supported)
 
-- Google Calendar Integration (Optional)
+#### 6. Google Calendar Integration (Optional)
 
   - Sync schedules to Google Calendar
 
   - Set reminders and receive notifications
 
-- Search & Filter
+#### 7. Search & Filter
 
   - Filter courses by rating, time, department
 
