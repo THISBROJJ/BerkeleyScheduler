@@ -71,12 +71,12 @@ BerkeleyScheduler is a comprehensive academic planning tool designed for UC Berk
 
 ---
 
-### 🗄️ Database
+### Database
 - SQL (PostgreSQL / MySQL)  
 
 ---
 
-### 🔌 External APIs
+### External APIs
 
 - [BerkeleyTime API](https://berkeleytime.com) – Class info & grade distributions  
 - [Google Calendar API](https://developers.google.com/calendar) – Schedule sync  
