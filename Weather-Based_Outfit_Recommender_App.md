@@ -39,7 +39,7 @@ This is a web application that recommends daily outfits based on **real-time wea
 
 ---
 
-### 👥 **Team Roles (If You Have a Team)**
+### 👥 **Team Roles **
 | Role | Task |
 |------|------|
 | Frontend Dev | UI, clothing display, interactivity |
