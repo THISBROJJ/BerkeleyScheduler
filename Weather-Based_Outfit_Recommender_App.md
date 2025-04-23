@@ -11,7 +11,7 @@ This is a web application that recommends daily outfits based on **real-time wea
 
 ---
 
-### 🌟 **Core Features**
+### 🌟 Core Features
 1. **Outfit Recommendations Based on Weather**
    - Pull current weather data using the OpenWeatherMap API
    - Suggest clothing based on:
