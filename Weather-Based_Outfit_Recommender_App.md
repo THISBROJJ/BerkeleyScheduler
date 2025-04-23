@@ -39,7 +39,7 @@ This is a web application that recommends daily outfits based on **real-time wea
 
 ---
 
-### 👥 **Team Roles **
+### 👥 Team Roles
 | Role | Task |
 |------|------|
 | Frontend Dev | UI, clothing display, interactivity |
@@ -159,9 +159,7 @@ navigator.geolocation.getCurrentPosition(position => {
 
 ---
 
-Would you like me to help you:
+Next steps:
 - Style the outfit cards?
 - Create mockups in Figma?
 - Add more weather conditions (rain, snow, UV)?
-
-Just say the word!
