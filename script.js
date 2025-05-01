@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 요소 가져오기 (이제 cookie → stimulation으로 네이밍 변경)
+    // Get DOM elements (renamed from "cookie" to "stimulation")
     let stimulationLevel = document.getElementById("stimulationLevel");
     let extraStim = document.getElementById("extraStim");
     let stimIcon = document.getElementById("stimIcon");
@@ -13,22 +13,23 @@ document.addEventListener("DOMContentLoaded", function() {
     let buttonRunning = false;
     let lastGifStim = 0;
 
-    // 상태 변수
+    // State variables
     let totalBurned = 0;
     let phoneScreenActive = false;
 
     let lastExplosionTime = 0;
-    const explosionCooldown = 1000; // 1초
+    const explosionCooldown = 1000; // 1 second cooldown
 
+    // Play burp sound
     function playBurpSound() {
         const burpAudio = document.getElementById("burpSound");
         if (burpAudio) {
             burpAudio.currentTime = 0;
             burpAudio.play();
         }
-    }   
+    }
 
-
+    // Make button run away when hovered
     function makeButtonRunAway(button) {
         button.addEventListener("mouseenter", () => {
             const maxX = window.innerWidth - button.offsetWidth;
@@ -40,20 +41,22 @@ document.addEventListener("DOMContentLoaded", function() {
             button.style.left = `${randomX}px`;
             button.style.top = `${randomY}px`;
         });
-    }    
+    }
 
+    // Play click sound effect
     function playClickSound() {
         document.getElementById("clickSound").play();
-    }    
+    }
 
+    // Display an exploding gif randomly chosen from "berkeley" or "oski"
     function showExplodingGif(stim) {
         const now = Date.now();
         if (stim % 50 !== 0 || now - lastExplosionTime < explosionCooldown) return;
         lastExplosionTime = now;
-    
+
         const tags = ["berkeley", "oski"];
         const randomTag = tags[Math.floor(Math.random() * tags.length)];
-    
+
         fetch(`https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${randomTag}&rating=pg-13`)
             .then(res => res.json())
             .then(data => {
@@ -61,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.error("❌ No GIF found for tag:", randomTag);
                     return;
                 }
-    
+
                 const gifUrl = data.data.images.original.url;
                 const img = document.createElement("img");
                 img.src = gifUrl;
@@ -77,20 +80,20 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.error("❌ Failed to load GIF for tag:", randomTag, error);
             });
     }
- 
 
-
+    // Shake screen animation
     function shakeScreen() {
         document.body.classList.add("shake");
         setTimeout(() => document.body.classList.remove("shake"), 300);
-    }    
+    }
 
-    const API_KEY = "Qg9QbwdR7qgY065viFNaQvYNFHcbBcl7";  // 너의 Giphy API 키로 바꿔줘
+    const API_KEY = "Qg9QbwdR7qgY065viFNaQvYNFHcbBcl7";  // Your Giphy API key
 
+    // Show one large Berkeley or Oski-themed GIF
     function showRandomGif() {
         const tags = ["berkeley", "oski"];
         const randomTag = tags[Math.floor(Math.random() * tags.length)];
-    
+
         fetch(`https://api.giphy.com/v1/gifs/random?api_key=${API_KEY}&tag=${randomTag}&rating=pg`)
             .then(response => response.json())
             .then(data => {
@@ -98,9 +101,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.error("No GIF found for tag:", randomTag);
                     return;
                 }
-    
+
                 const gifUrl = data.data.images.original.url;
-    
+
                 const newGif = document.createElement("img");
                 newGif.src = gifUrl;
                 newGif.style.width = "200px";
@@ -113,42 +116,43 @@ document.addEventListener("DOMContentLoaded", function() {
                 console.error("Failed to load GIF for tag:", randomTag, error);
             });
     }
-    
 
-    // 자극 1 증가
+    // Increase stimulation count by 1
     function addStim() {
         let stim = parseInt(stimulationLevel.innerText.trim()) + 1;
         stimulationLevel.innerText = stim;
-    
+
         checkOverstim();
         playClickSound();
         showExplodingGif(stim);
-    
-        stim = parseInt(stimulationLevel.innerText.trim()); // 업데이트 후 다시 확인
-    
-        // ✅ 버클리 GIF: 100의 배수에서 한 번만 호출
+
+        stim = parseInt(stimulationLevel.innerText.trim()); // re-check after updating
+
+        // Show big gif every 100 stim only once
         if (stim % 100 === 0 && stim !== 0 && stim !== lastGifStim) {
             showRandomGif();
             lastGifStim = stim;
         }
-    
+
+        // Shake screen every 20 stim
         if (stim % 20 === 0) {
             shakeScreen();
         }
-    
+
+        // Unlock phone screen mode after 50 stim
         if (stim >= 50) {
             addPhoneScreenButton.disabled = false;
             unlockMessage.innerText = "You have unlocked 'Cat Video Mode'!";
         }
-    
+
+        // Start button runaway after 50 stim
         if (stim >= 50 && !buttonRunning) {
             makeButtonRunAway(addPhoneScreenButton);
             buttonRunning = true;
         }
     }
-    
 
-    // 20의 배수마다 팝업
+    // Show popup every 20 stim
     function checkOverstim() {
         let stim = parseInt(stimulationLevel.innerText.trim());
         if (stim % 20 === 0 && stim > 0) {
@@ -156,19 +160,19 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // 팝업 닫기
+    // Close popup
     function closePopup() {
         overstimPopup.style.display = "none";
     }
 
-    // 5 stim 소비
+    // Burn 5 stim
     burnButton.addEventListener("click", function() {
         if (parseInt(stimulationLevel.innerText.trim()) >= 5) {
             stimulationLevel.innerText = parseInt(stimulationLevel.innerText.trim()) - 5;
             totalBurned += 5;
             energyBurned.innerText = totalBurned;
 
-            playBurpSound();
+            playBurpSound(); // Play burp on burn
 
             if (totalBurned >= 50) {
                 addPhoneScreenButton.disabled = false;
@@ -179,7 +183,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     });
 
-    // Phone Screen 해금 → 자동 자극 생성 시작
+    // Start auto stimulation when Phone Screen is unlocked
     addPhoneScreenButton.addEventListener("click", function() {
         extraStimContainer.style.display = "block";
         addPhoneScreenButton.disabled = true;
@@ -197,9 +201,10 @@ document.addEventListener("DOMContentLoaded", function() {
     closeButton.addEventListener("click", closePopup);
 });
 
+// Flash background color every 0.5 seconds
 function flashBackground() {
     const colors = ["#ffcccb", "#c1f0f6", "#f7e1ff", "#fff176", "#dcedc8"];
     document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 }
 
-setInterval(flashBackground, 500);  // 매 0.5초마다 배경색이 무작위로 바뀜
+setInterval(flashBackground, 500);
