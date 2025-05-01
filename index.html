@@ -1,34 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stimulation Clicker</title>
+    <style>
+        @keyframes shake {
+          0% { transform: translate(0px, 0px); }
+          25% { transform: translate(5px, -5px); }
+          50% { transform: translate(-5px, 5px); }
+          75% { transform: translate(5px, 5px); }
+          100% { transform: translate(0px, 0px); }
+        }
+        .shake {
+          animation: shake 0.3s;
+        }
+        /* ✅ 버튼 이동 부드럽게 */
+        button {
+            transition: all 0.3s ease;
+        }
+
+        img {
+        max-width: 100%;
+        height: auto;
+        }
+
+        #gifContainer img {
+        transition: transform 0.3s ease;
+        }
+
+        #gifContainer img:hover {
+        transform: scale(1.1);
+        }
+
+        body {
+            background-image: url("https://www.tclf.org/sites/default/files/thumbnails/image/CA_Berkeley_UniversityOfCaliforniaAtBerkeley_byCharlieNguyen-Flickr_2008_001_Sig.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: white;
+            text-shadow: 1px 1px 4px black;
+        }
+
+        </style>        
+</head>
 <body>
-    <h1><span id="counter">0</span> cookies</h1>
+    <h1><span id="stimulationLevel">0</span> stimulations</h1>
 
     <img 
-        src="https://pngimg.com/d/cookie_PNG13683.png" 
-        id="cookie" 
-        onclick="addOneToCounter()"
+        src="https://news.berkeley.edu/wp-content/uploads/2016/09/Oskicupcake750.jpg" 
+        id="stimIcon" 
+        onclick="addStim()"
         width="200"
         style="cursor: pointer;"
     />
 
-    <h2>Cookies Spent: <span id="cookiesSpent">0</span></h2>
+    <h2>Energy Burned: <span id="energyBurned">0</span></h2>
 
-    <button id="spend5">Spend 5 Cookies</button>
+    <button id="burn5">Burn 5 Stim</button>
 
-    <p id="unlockMessage">Spend 50 cookies to unlock 'Add Another Cookie'!</p>
-    <button id="addAnotherCookie" disabled>Add Another Cookie</button>
+    <p id="unlockMessage">Unlock Cat Video Mode at 50 stimulations!</p>
+    <button id="addPhoneScreen" disabled>Add Cat Video</button>
 
-    <div id="extraCookieContainer" style="display: none;">
-        <h1>Extra Cookie</h1>
-        <img src="https://png.pngtree.com/png-clipart/20201221/ourmid/pngtree-three-chocolate-chips-cookies-isolated-on-transparent-background-png-image_2593836.jpg" id="extraCookie" width="100"/>
-        <h2>Extra Cookies: <span id="extraCounter">0</span></h2>
+    <div id="extraStimContainer" style="display: none;">
+        <h1>🐱 Cat Video Mode</h1>
+
+        <img 
+            src="https://cdn-icons-png.flaticon.com/512/3176/3176361.png" 
+            id="phoneScreen" 
+            width="100"
+        />
+        <h2>Extra Stim: <span id="extraStim">0</span></h2>
     </div>
 
-    <div id="cookieMonsterPopup" 
+    <div id="gifContainer" style="margin-top: 20px;">
+        <img id="stimGif" src="" width="300" style="display: none;" />
+    </div>    
+
+    <div id="crashPopup" 
         style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
         background: white; padding: 20px; border: 2px solid black; text-align: center;">
-        <img src="https://hips.hearstapps.com/hmg-prod/images/sesame-street-muppet-cookie-monster-poses-for-photographs-news-photo-1701191526.jpg" width="200"/>
-        <p>You are a Cookie Monster!!! >:(</p>
-        <button id="closePopupButton">Close</button> <!-- Added ID here -->
+        <img 
+            src="https://pbs.twimg.com/media/EO_T18jUwAAcR-9.jpg" 
+            width="200"
+        />
+        <p>You are Overstimulated 😵 Take a break!</p>
+        <button id="closePopupButton">Close</button>
     </div>
+
+    <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto">
+    </audio>
+
+    <audio id="burpSound" src="burp-20581.mp3" preload="auto"></audio>
 
     <script src="script.js"></script>
 </body>
+</html>
