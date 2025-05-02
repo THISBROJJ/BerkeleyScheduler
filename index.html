@@ -93,6 +93,18 @@
 
     <audio id="burpSound" src="burp-20581.mp3" preload="auto"></audio>
 
+    <div id="myvideopopup" 
+        style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+                background: white; padding: 20px; border: 2px solid black; z-index: 999;">
+        <p>Take a break & study! Here's a 10-min timer:</p>
+        <iframe width="300" height="200"
+            src="https://www.youtube.com/embed/oCT21CFG3Ak?autoplay=1"
+            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+        <br/>
+        <button onclick="closeYoutubePopup()">Close</button>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>

@@ -19,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let lastExplosionTime = 0;
     const explosionCooldown = 1000; // 1 second cooldown
+    const backgrounds = ['https://www.collegegridirons.com/wp-content/uploads/2017/05/calmemorial17950.jpg', 'https://shopcollegewear.com/cdn/shop/products/R220064-7146.png?v=1647067627', 'https://upload.wikimedia.org/wikipedia/commons/f/fe/Sather-Gate.jpg', 'https://www.tclf.org/sites/default/files/thumbnails/image/CA_Berkeley_UniversityOfCaliforniaAtBerkeley_byCharlieNguyen-Flickr_2008_001_Sig.jpg']; //cycle through background images
 
     // Play burp sound
     function playBurpSound() {
@@ -139,6 +140,7 @@ document.addEventListener("DOMContentLoaded", function() {
             shakeScreen();
         }
 
+
         // Unlock phone screen mode after 50 stim
         if (stim >= 50) {
             addPhoneScreenButton.disabled = false;
@@ -149,6 +151,19 @@ document.addEventListener("DOMContentLoaded", function() {
         if (stim >= 50 && !buttonRunning) {
             makeButtonRunAway(addPhoneScreenButton);
             buttonRunning = true;
+        }
+
+        //cycle through each background image every 25 clicks
+        if (stim % 25 === 0) {
+            //=== means strict equality (value and type is same)
+            const index = (Math.floor(stim / 25) - 1) % backgrounds.length;
+            document.body.style.backgroundImage = `url('${backgrounds[index]}')`;
+        }
+
+        //every 100 clicks have the 10 min study timer 
+        if (stim % 100 === 0) {
+            document.getElementById('myvideopopup').style.display = 'block';
+            //allows us to actually see the youtube pop up screen
         }
     }
 
@@ -207,4 +222,8 @@ function flashBackground() {
     document.body.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 }
 
+//close the study timer popup
+function closeYoutubePopup() {
+    document.getElementById('myvideopopup').style.display = 'none';
+}
 setInterval(flashBackground, 500);
