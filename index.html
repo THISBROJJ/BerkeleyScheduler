@@ -1,110 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Stimulation Clicker</title>
-    <style>
-        @keyframes shake {
-          0% { transform: translate(0px, 0px); }
-          25% { transform: translate(5px, -5px); }
-          50% { transform: translate(-5px, 5px); }
-          75% { transform: translate(5px, 5px); }
-          100% { transform: translate(0px, 0px); }
-        }
-        .shake {
-          animation: shake 0.3s;
-        }
-
-        /* ✅ Smooth movement animation for buttons */
-        button {
-            transition: all 0.3s ease;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        #gifContainer img {
-            transition: transform 0.3s ease;
-        }
-
-        #gifContainer img:hover {
-            transform: scale(1.1);
-        }
-
-        body {
-            background-image: url("https://www.tclf.org/sites/default/files/thumbnails/image/CA_Berkeley_UniversityOfCaliforniaAtBerkeley_byCharlieNguyen-Flickr_2008_001_Sig.jpg");
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            color: white;
-            text-shadow: 1px 1px 4px black;
-        }
-    </style>        
+  <meta charset="UTF-8" />
+  <title>Stimulation Clicker</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <div id="mainWrapper">
     <h1><span id="stimulationLevel">0</span> stimulations</h1>
 
-    <img 
+    <div id="clickerArea">
+      <img 
         src="https://news.berkeley.edu/wp-content/uploads/2016/09/Oskicupcake750.jpg" 
         id="stimIcon" 
         onclick="addStim()"
         width="200"
         style="cursor: pointer;"
-    />
+      />
 
-    <h2>Energy Burned: <span id="energyBurned">0</span></h2>
+      <h2>Energy Burned: <span id="energyBurned">0</span></h2>
 
-    <button id="burn5">Burn 5 Stim</button>
+      <button id="burn5">Burn 5 Stim</button>
 
-    <p id="unlockMessage">Unlock Cat Video Mode at 50 stimulations!</p>
-    <button id="addPhoneScreen" disabled>Add Cat Video</button>
+      <button id="addDvd">Add Bouncing DVD (Cost: 3 Stim)</button>
+        <canvas id="dvdCanvas"></canvas>
+
+
+      <p id="unlockMessage">Unlock Cat Video Mode at 50 stimulations!</p>
+      <button id="addPhoneScreen" disabled>Add Cat Video</button>
+
+      <button id="lofiButton">Purchase LoFi Girl (50 Stim)</button>
+
+
+
+    </div>
 
     <div id="extraStimContainer" style="display: none;">
-        <h1>🐱 Cat Video Mode</h1>
-
-        <img 
-            src="https://cdn-icons-png.flaticon.com/512/3176/3176361.png" 
-            id="phoneScreen" 
-            width="100"
-        />
-        <h2>Extra Stim: <span id="extraStim">0</span></h2>
+      <h1>🐱 Cat Video Mode</h1>
+      <img 
+        src="https://cdn-icons-png.flaticon.com/512/3176/3176361.png" 
+        id="phoneScreen" 
+        width="100"
+      />
+      <h2>Extra Stim: <span id="extraStim">0</span></h2>
     </div>
 
     <div id="gifContainer" style="margin-top: 20px;">
-        <img id="stimGif" src="" width="300" style="display: none;" />
+      <img id="stimGif" src="" width="300" style="display: none;" />
     </div>    
 
     <div id="crashPopup" 
-        style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-        background: white; padding: 20px; border: 2px solid black; text-align: center;">
-        <img 
-            src="https://pbs.twimg.com/media/EO_T18jUwAAcR-9.jpg" 
-            width="200"
-        />
-        <p>You are Overstimulated 😵 Take a break!</p>
-        <button id="closePopupButton">Close</button>
+      style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+      background: white; padding: 20px; border: 2px solid black; text-align: center;">
+      <img 
+        src="https://pbs.twimg.com/media/EO_T18jUwAAcR-9.jpg" 
+        width="200"
+      />
+      <p>You are Overstimulated 😵 Take a break!</p>
+      <button id="closePopupButton">Close</button>
     </div>
 
-    <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto">
-    </audio>
-
+    <audio id="clickSound" src="https://www.fesliyanstudios.com/play-mp3/387" preload="auto"></audio>
     <audio id="burpSound" src="burp-20581.mp3" preload="auto"></audio>
+    <!-- <audio id="lofiAudio" src="https://cdn.pixabay.com/download/audio/2022/11/15/audio_06f27b6b14.mp3?filename=lofi-study-112191.mp3" loop preload="auto"></audio> -->
+
 
     <div id="myvideopopup" 
-        style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
-                background: white; padding: 20px; border: 2px solid black; z-index: 999;">
-        <p>Take a break & study! Here's a 10-min timer:</p>
-        <iframe width="300" height="200"
-            src="https://www.youtube.com/embed/oCT21CFG3Ak?autoplay=1"
-            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
-        </iframe>
-        <br/>
-        <button onclick="closeYoutubePopup()">Close</button>
+      style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+              background: white; padding: 20px; border: 2px solid black; z-index: 999;">
+      <p>Take a break & study! Here's a 10-min timer:</p>
+      <iframe width="300" height="200"
+          src="https://www.youtube.com/embed/oCT21CFG3Ak?autoplay=1"
+          frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+      </iframe>
+      <br/>
+      <button onclick="closeYoutubePopup()">Close</button>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
