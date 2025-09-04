@@ -1,86 +1,27 @@
-# BerkeleyScheduler
+# BerkeleyGame
 Team: Ankita Biyani, Yunji Seo, Liana Zhang
 
 ## Project Name
-BerkeleyScheduler
+BerkeleyGame
 
 ## Application Description
-BerkeleyScheduler is a comprehensive academic planning tool designed for UC Berkeley students. The platform allows users to create and share both academic and custom schedules, access real-time reviews for professors and courses, and join class-specific group chats for peer collaboration. An integrated GPA calculator computes cumulative GPA and total earned credits based on user-inputted grades and course units.
+Berkeley Game enables students to have a fun way to de-stress and relax while also getting back on track with studies. 
 
 ## Features and Tools
 ### Features
+Be able to play a clicking-game and see different pop-up images and videos as a fun way to de-stress. Once enough clicks have been made a timer will be turned on for going back to studying.
 
-#### 1. Class Scheduler
-
-  - Add Berkeley classes (auto-complete search)
-
-  - Add custom events (study blocks, clubs, etc.)
-
-  - Visual drag-and-drop interface
-
-  - Save/load schedules
-
-  - Share via link or QR code
-
-#### 2. User Authentication
-
-  - Sign up / Login (OAuth or Berkeley CalNet optional)
-
-  - Store user preferences and saved data securely
-
-#### 3. Professor/Class Ratings
-
-  - Pull in ratings from RateMyProfessor or internal reviews
-
-  - View real-time grade distributions (via BerkeleyTime)
-
-  - Allow in-app user reviews/comments
-
-#### 4. GPA Calculator
-
-  - Input course grades + credits
-
-  - Output cumulative GPA and total credits earned
-
-#### 5. Group Chat for Each Class
-
-  - Join/leave class-specific chatrooms
-
-  - Send messages, links, media (if supported)
-
-#### 6. Google Calendar Integration (Optional)
-
-  - Sync schedules to Google Calendar
-
-  - Set reminders and receive notifications
-
-#### 7. Search & Filter
-
-  - Filter courses by rating, time, department
-
-  - Search for classes by name, code, or professor
+Designed to be a creative de-stressful experience & help students take a break when needed. 
 
 ---
 
-### Optional Features
+### Optional Features to add on 
 - Dark/Light Mode Toggle (nice for UX)
 
   - Save user preferences
 
 - Works on desktop, tablet, mobile
-
----
-
-### Database
-- SQL (PostgreSQL / MySQL)  
-
----
-
-### External APIs
-
-- [BerkeleyTime API](https://berkeleytime.com) – Class info & grade distributions  
-- [Google Calendar API](https://developers.google.com/calendar) – Schedule sync  
-- [RateMyProfessor (unofficial)](https://www.ratemyprofessors.com/) – Professor/class reviews  
+  
 
 ---
 
