@@ -1,15 +1,15 @@
-# BerkeleyGame
+# BerkeleyScheduler
 Team: Ankita Biyani, Yunji Seo, Liana Zhang
 
 ## Project Name
-BerkeleyGame
+BerkeleyScheduler
 
 ## Application Description
-Berkeley Game enables students to have a fun way to de-stress and relax while also getting back on track with studies. 
+Berkeley Scheduler enables students to interact with a basic game to de-stress, revive school spirit, and relax while also getting back on track with studies. 
 
 ## Features and Tools
 ### Features
-Be able to play a clicking-game and see different pop-up images and videos as a fun way to de-stress. Once enough clicks have been made a timer will be turned on for going back to studying.
+Be able to play a clicking-game and see different pop-up images and videos as a fun way to de-stress & re-juvenate. Once enough clicks have been made a timer will be turned on for going back to studying.
 
 Designed to be a creative de-stressful experience & help students take a break when needed. 
 
